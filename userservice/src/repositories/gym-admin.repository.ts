@@ -1,28 +1,27 @@
 import {inject} from '@loopback/core';
 import {DefaultCrudRepository} from '@loopback/repository';
 import {DbDataSource} from '../datasources';
-import {Customer, CustomerRelations} from '../models';
+import {GymAdmin, GymAdminRelations} from '../models';
 
-export class CustomerRepository extends DefaultCrudRepository<
-  Customer,
-  typeof Customer.prototype.id,
-  CustomerRelations
+export class GymAdminRepository extends DefaultCrudRepository<
+  GymAdmin,
+  typeof GymAdmin.prototype.id,
+  GymAdminRelations
 > {
   constructor(
     @inject('datasources.db') dataSource: DbDataSource,
   ) {
-    super(Customer, dataSource);
+    super(GymAdmin, dataSource);
   }
-  async temp1(customer:Customer) {
+  async temp1(gymAdmin:GymAdmin) {
     let existing = await this.find({
       where: {
-        username: customer.username
+        username: gymAdmin.username
       }
     })
-    //promise of an array of records found
     if (existing.length == 0) {
       return null;
     }
-    else return existing[0]; 
+    else return existing[0];
   }
 }

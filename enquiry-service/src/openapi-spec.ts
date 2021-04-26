@@ -1,5 +1,5 @@
 import {ApplicationConfig} from '@loopback/core';
-import {GymserviceApplication} from './application';
+import {EnquiryServiceApplication} from './application';
 
 /**
  * Export the OpenAPI spec from the application
@@ -7,12 +7,12 @@ import {GymserviceApplication} from './application';
 async function exportOpenApiSpec(): Promise<void> {
   const config: ApplicationConfig = {
     rest: {
-      port: +(process.env.PORT ?? 3001),
+      port: +(process.env.PORT ?? 3002),
       host: process.env.HOST ?? 'localhost',
     },
   };
   const outFile = process.argv[2] ?? '';
-  const app = new GymserviceApplication(config);
+  const app = new EnquiryServiceApplication(config);
   await app.boot();
   await app.exportOpenApiSpec(outFile);
 }

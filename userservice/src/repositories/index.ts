@@ -1,3 +1,3 @@
 export * from './customer.repository';
-export * from './gymadmin.repository';
-export * from './marketingteam.repository';
+export * from './gym-admin.repository';
+export * from './marketing-team.repository';

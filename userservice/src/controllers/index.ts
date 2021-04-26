@@ -1,4 +1,4 @@
 export * from './ping.controller';
 export * from './customer.controller';
-export * from './gymadmin.controller';
-export * from './marketingteam.controller';
+export * from './gym-admin.controller';
+export * from './marketing-team.controller';

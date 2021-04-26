@@ -1,31 +1,22 @@
-import {AuthenticationComponent} from '@loopback/authentication';
-import {
-  JWTAuthenticationComponent, UserServiceBindings
-} from '@loopback/authentication-jwt';
 import {BootMixin} from '@loopback/boot';
 import {ApplicationConfig} from '@loopback/core';
-import {RepositoryMixin} from '@loopback/repository';
-import {RestApplication} from '@loopback/rest';
 import {
   RestExplorerBindings,
-  RestExplorerComponent
+  RestExplorerComponent,
 } from '@loopback/rest-explorer';
+import {RepositoryMixin} from '@loopback/repository';
+import {RestApplication} from '@loopback/rest';
 import {ServiceMixin} from '@loopback/service-proxy';
 import path from 'path';
-import {DbDataSource} from './datasources';
 import {MySequence} from './sequence';
+
 export {ApplicationConfig};
 
-
-
-
-export class UserServiceApplication extends BootMixin(
+export class EnquiryServiceApplication extends BootMixin(
   ServiceMixin(RepositoryMixin(RestApplication)),
 ) {
   constructor(options: ApplicationConfig = {}) {
     super(options);
-
-    this.bind('sysdate').toDynamicValue(() => new Date());
 
     // Set up the custom sequence
     this.sequence(MySequence);
@@ -49,12 +40,5 @@ export class UserServiceApplication extends BootMixin(
         nested: true,
       },
     };
-    // Mount authentication system
-    this.component(AuthenticationComponent);
-    // Mount jwt component
-    this.component(JWTAuthenticationComponent);
-    // Bind datasource
-    this.dataSource(DbDataSource, UserServiceBindings.DATASOURCE_NAME);
-
   }
 }

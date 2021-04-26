@@ -28,12 +28,6 @@ export class Enrolledfitnessprograms extends Entity {
   ProgramName: string;
 
   @property({
-    type: 'string',
-    required: true,
-  })
-  ProgramLevel: string;
-
-  @property({
     type: 'number',
     required: true,
   })
